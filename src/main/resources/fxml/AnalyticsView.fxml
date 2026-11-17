@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.AnalyticsController">
+    <VBox spacing="16.0">
+        <!-- Date Filtering Bar -->
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📈 Comprehensive Log Analytics" />
+            <Separator orientation="VERTICAL" />
+            <Label text="From:" />
+            <DatePicker fx:id="dpFromDate" prefWidth="140.0" />
+            <Label text="To:" />
+            <DatePicker fx:id="dpToDate" prefWidth="140.0" />
+            <Button fx:id="btnApplyDateFilter" styleClass="button-primary" text="Filter Range" />
+            <Button fx:id="btnResetDateFilter" styleClass="button-secondary" text="Reset" />
+        </HBox>
+
+        <!-- KPI Summary Cards -->
+        <HBox spacing="14.0">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="kpi-title" text="ANALYZED ENTRIES" />
+                <Label fx:id="lblAnalyticsTotal" styleClass="kpi-value" text="0" />
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="kpi-title" text="TOTAL ERRORS" />
+                <Label fx:id="lblAnalyticsErrors" styleClass="kpi-value" style="-fx-text-fill: #EF4444;" text="0" />
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="kpi-title" text="TOTAL WARNINGS" />
+                <Label fx:id="lblAnalyticsWarnings" styleClass="kpi-value" style="-fx-text-fill: #F59E0B;" text="0" />
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="kpi-title" text="ERROR RATE" />
+                <Label fx:id="lblAnalyticsErrorRate" styleClass="kpi-value" style="-fx-text-fill: #818CF8;" text="0.00 %" />
+            </VBox>
+        </HBox>
+
+        <!-- Charts Row 1 -->
+        <HBox spacing="16.0">
+            <VBox prefWidth="400.0" styleClass="card">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🎯 Log Level Distribution" />
+                <PieChart fx:id="chartLogLevels" prefHeight="260.0" />
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📉 Error Frequency Trends" />
+                <LineChart fx:id="chartErrorTrends" prefHeight="260.0">
+                    <xAxis>
+                        <CategoryAxis label="Time Window" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Error Count" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
+        </HBox>
+
+        <!-- Charts Row 2 -->
+        <HBox spacing="16.0">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="⏰ Hourly Log Traffic (0 - 23h)" />
+                <BarChart fx:id="chartHourlyLogs" prefHeight="240.0">
+                    <xAxis>
+                        <CategoryAxis label="Hour" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Logs" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
+            <VBox prefWidth="420.0" styleClass="card">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🔥 Top Exception Types" />
+                <BarChart fx:id="chartTopExceptions" prefHeight="240.0">
+                    <xAxis>
+                        <CategoryAxis label="Exception" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Count" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
+        </HBox>
+
+        <!-- Threads & Loggers Breakdown -->
+        <HBox spacing="16.0">
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🧵 Most Active Threads" />
+                <VBox fx:id="boxTopThreads" spacing="6.0" style="-fx-padding: 8 0;" />
+            </VBox>
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🏷 Most Active Loggers" />
+                <VBox fx:id="boxTopLoggers" spacing="6.0" style="-fx-padding: 8 0;" />
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

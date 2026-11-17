@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="rootPane" prefHeight="850.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.MainController">
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+            <padding>
+                <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label style="-fx-font-size: 18px; -fx-font-weight: 900; -fx-text-fill: #818CF8;" text="⚡ LogView Pro" />
+                <Label style="-fx-font-size: 11px; -fx-background-color: #312E81; -fx-text-fill: #C7D2FE; -fx-padding: 2 6; -fx-background-radius: 4;" text="v1.0" />
+            </HBox>
+            <Separator orientation="VERTICAL" />
+            <Button fx:id="btnQuickOpenFile" styleClass="button-primary" text="📁 Open File..." />
+            <HBox alignment="CENTER_LEFT" spacing="8.0" HBox.hgrow="NEVER">
+                <Label fx:id="lblActiveFileName" styleClass="top-bar-title" text="No file opened" />
+                <Label fx:id="lblActiveFileBadge" style="-fx-background-color: #1F2937; -fx-text-fill: #9CA3AF; -fx-padding: 2 8; -fx-background-radius: 4; -fx-font-size: 11px;" visible="false" />
+            </HBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" spacing="8.0">
+                <TextField fx:id="txtGlobalSearch" prefWidth="260.0" promptText="🔍 Global search &amp; press Enter..." />
+                <Button fx:id="btnThemeToggle" styleClass="button-secondary" text="🌙" />
+                <Button fx:id="btnNotifications" styleClass="button-secondary" text="🔔 Alerts" />
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox prefWidth="230.0" spacing="4.0" styleClass="sidebar">
+            <padding>
+                <Insets bottom="16.0" left="12.0" right="12.0" top="16.0" />
+            </padding>
+            <Label styleClass="sidebar-title" text="WORKSPACE">
+                <VBox.margin>
+                    <Insets bottom="6.0" left="8.0" />
+                </VBox.margin>
+            </Label>
+            <Button fx:id="navDashboard" maxWidth="Infinity" styleClass="nav-button" text="📊 Dashboard" />
+            <Button fx:id="navLiveMonitor" maxWidth="Infinity" styleClass="nav-button" text="📡 Live Monitor" />
+            <Button fx:id="navFileManagement" maxWidth="Infinity" styleClass="nav-button" text="📂 Open Files" />
+            <Button fx:id="navLogViewer" maxWidth="Infinity" styleClass="nav-button" text="📜 Advanced Viewer" />
+            <Button fx:id="navMultiFile" maxWidth="Infinity" styleClass="nav-button" text="📑 Multi-File Viewer" />
+
+            <Separator style="-fx-padding: 8 0;">
+                <VBox.margin>
+                    <Insets bottom="4.0" top="4.0" />
+                </VBox.margin>
+            </Separator>
+
+            <Label styleClass="sidebar-title" text="ANALYSIS">
+                <VBox.margin>
+                    <Insets bottom="6.0" left="8.0" />
+                </VBox.margin>
+            </Label>
+            <Button fx:id="navErrorAnalyzer" maxWidth="Infinity" styleClass="nav-button" text="🐞 Error Analyzer" />
+            <Button fx:id="navSearch" maxWidth="Infinity" styleClass="nav-button" text="🔍 Search Engine" />
+            <Button fx:id="navComparison" maxWidth="Infinity" styleClass="nav-button" text="⚖ Log Comparison" />
+            <Button fx:id="navStatistics" maxWidth="Infinity" styleClass="nav-button" text="📈 Statistics &amp; Trends" />
+
+            <Separator style="-fx-padding: 8 0;">
+                <VBox.margin>
+                    <Insets bottom="4.0" top="4.0" />
+                </VBox.margin>
+            </Separator>
+
+            <Label styleClass="sidebar-title" text="MANAGEMENT">
+                <VBox.margin>
+                    <Insets bottom="6.0" left="8.0" />
+                </VBox.margin>
+            </Label>
+            <Button fx:id="navFilters" maxWidth="Infinity" styleClass="nav-button" text="🎛 Saved Filters" />
+            <Button fx:id="navAlerts" maxWidth="Infinity" styleClass="nav-button" text="🚨 Smart Alerts" />
+            <Button fx:id="navReports" maxWidth="Infinity" styleClass="nav-button" text="📄 Reports &amp; Export" />
+            <Button fx:id="navSettings" maxWidth="Infinity" styleClass="nav-button" text="⚙ Settings" />
+        </VBox>
+    </left>
+
+    <!-- Center Content Area -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: -color-bg-main;">
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+            </padding>
+        </StackPane>
+    </center>
+</BorderPane>

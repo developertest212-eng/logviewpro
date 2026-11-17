@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.DashboardController">
+    <VBox spacing="16.0">
+        <!-- KPI Cards Grid -->
+        <GridPane hgap="12.0" vgap="12.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25.0" />
+                <ColumnConstraints percentWidth="25.0" />
+                <ColumnConstraints percentWidth="25.0" />
+                <ColumnConstraints percentWidth="25.0" />
+            </columnConstraints>
+
+            <!-- Total Log Entries -->
+            <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label styleClass="kpi-title" text="TOTAL LOG ENTRIES" />
+                <Label fx:id="lblTotalEntries" styleClass="kpi-value" text="0" />
+                <Label styleClass="kpi-sub" text="Processed records in active view" />
+            </VBox>
+
+            <!-- Errors -->
+            <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label styleClass="kpi-title" text="ERROR COUNT" />
+                <Label fx:id="lblErrorCount" styleClass="kpi-value" style="-fx-text-fill: #EF4444;" text="0" />
+                <Label styleClass="kpi-sub" text="High priority application errors" />
+            </VBox>
+
+            <!-- Warnings -->
+            <VBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <Label styleClass="kpi-title" text="WARN COUNT" />
+                <Label fx:id="lblWarnCount" styleClass="kpi-value" style="-fx-text-fill: #F59E0B;" text="0" />
+                <Label styleClass="kpi-sub" text="Potential issues / degradation" />
+            </VBox>
+
+            <!-- Fatal Errors -->
+            <VBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <Label styleClass="kpi-title" text="FATAL ERRORS" />
+                <Label fx:id="lblFatalCount" styleClass="kpi-value" style="-fx-text-fill: #991B1B;" text="0" />
+                <Label styleClass="kpi-sub" text="Severe service interruptions" />
+            </VBox>
+
+            <!-- Info Count -->
+            <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label styleClass="kpi-title" text="INFO COUNT" />
+                <Label fx:id="lblInfoCount" styleClass="kpi-value" style="-fx-text-fill: #3B82F6;" text="0" />
+                <Label styleClass="kpi-sub" text="Operational informative logs" />
+            </VBox>
+
+            <!-- Debug Count -->
+            <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label styleClass="kpi-title" text="DEBUG COUNT" />
+                <Label fx:id="lblDebugCount" styleClass="kpi-value" style="-fx-text-fill: #10B981;" text="0" />
+                <Label styleClass="kpi-sub" text="Verbose debugging messages" />
+            </VBox>
+
+            <!-- Active Monitored Files -->
+            <VBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Label styleClass="kpi-title" text="ACTIVE MONITORED FILES" />
+                <Label fx:id="lblMonitoredFiles" styleClass="kpi-value" style="-fx-text-fill: #818CF8;" text="0" />
+                <Label styleClass="kpi-sub" text="Real-time tailing via NIO Watcher" />
+            </VBox>
+
+            <!-- Last Detected Error -->
+            <VBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <Label styleClass="kpi-title" text="LAST DETECTED ERROR" />
+                <Label fx:id="lblLastDetectedError" style="-fx-font-size: 13px; -fx-text-fill: #F87171; -fx-wrap-text: true;" text="No errors detected" />
+                <Label styleClass="kpi-sub" text="Most recent exception/failure" />
+            </VBox>
+        </GridPane>
+
+        <!-- Charts Row 1 -->
+        <HBox spacing="16.0">
+            <!-- Line Chart: Logs per Minute & Error Trends -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📈 Logs Per Minute &amp; Error Trends" />
+                <LineChart fx:id="chartLogsPerMinute" prefHeight="260.0">
+                    <xAxis>
+                        <CategoryAxis label="Time (HH:mm)" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Count" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
+
+            <!-- Pie Chart: Log Level Distribution -->
+            <VBox prefWidth="380.0" styleClass="card">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🎯 Log Level Distribution" />
+                <PieChart fx:id="chartLevelDistribution" prefHeight="260.0" />
+            </VBox>
+        </HBox>
+
+        <!-- Charts Row 2 -->
+        <HBox spacing="16.0">
+            <!-- Bar Chart: Hourly Log Activity -->
+            <VBox styleClass="card" HBox.hgrow="ALWAYS">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="⏰ Hourly Log Activity" />
+                <BarChart fx:id="chartHourlyActivity" prefHeight="240.0">
+                    <xAxis>
+                        <CategoryAxis label="Hour of Day" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Logs" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+            <!-- Bar Chart: Top Exceptions -->
+            <VBox prefWidth="380.0" styleClass="card">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="⚡ Most Frequent Exceptions" />
+                <BarChart fx:id="chartTopExceptions" prefHeight="240.0">
+                    <xAxis>
+                        <CategoryAxis label="Exception" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Count" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
+        </HBox>
+
+        <!-- Top Error Producing Loggers / Classes -->
+        <VBox styleClass="card">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🔥 Top Error-Producing Classes / Loggers" />
+            <VBox fx:id="boxTopLoggers" spacing="6.0" style="-fx-padding: 8 0;">
+                <Label style="-fx-text-fill: -color-text-muted; -fx-font-style: italic;" text="No error-producing loggers detected" />
+            </VBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

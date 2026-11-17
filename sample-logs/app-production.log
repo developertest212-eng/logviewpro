@@ -1,0 +1,48 @@
+2026-11-17 01:00:01.120 [main] INFO com.logviewpro.demo.BootstrapApplication - Initializing LogView Pro Core Service Engine
+2026-11-17 01:00:01.345 [main] INFO com.logviewpro.demo.ConfigLoader - Loaded configuration profile: PRODUCTION from environment
+2026-11-17 01:00:01.560 [main] DEBUG com.logviewpro.demo.DatabasePool - Establishing HikariCP connection pool [max=20, minIdle=5, timeout=30000ms]
+2026-11-17 01:00:02.100 [main] INFO com.logviewpro.demo.DatabasePool - HikariCP database pool initialized successfully in 540ms
+2026-11-17 01:00:02.320 [worker-thread-1] INFO com.logviewpro.demo.CacheManager - Pre-loading Redis distributed cache keys
+2026-11-17 01:00:03.450 [worker-thread-1] DEBUG com.logviewpro.demo.CacheManager - Warmup completed. 4,200 cache keys populated
+2026-11-17 01:00:05.100 [http-nio-8080-exec-1] INFO com.logviewpro.demo.OrderController - Received POST /api/v1/orders for customerId=98231
+2026-11-17 01:00:05.220 [http-nio-8080-exec-1] DEBUG com.logviewpro.demo.OrderService - Validating order inventory availability for sku=SKU-9921
+2026-11-17 01:00:05.350 [http-nio-8080-exec-1] INFO com.logviewpro.demo.PaymentClient - Calling payment gateway provider: STRIPE_DIRECT
+2026-11-17 01:00:06.120 [http-nio-8080-exec-1] INFO com.logviewpro.demo.OrderService - Order ID #108422 processed successfully
+2026-11-17 01:01:10.420 [http-nio-8080-exec-2] WARN com.logviewpro.demo.RateLimiter - Client 192.168.1.105 exceeded rate limit: 120 req/min (current=122 req/min)
+2026-11-17 01:01:15.890 [http-nio-8080-exec-3] INFO com.logviewpro.demo.UserController - GET /api/v1/users/40410 - Fetching user profile
+2026-11-17 01:01:16.020 [http-nio-8080-exec-3] ERROR com.logviewpro.demo.UserService - Failed to process user profile due to unexpected null reference
+java.lang.NullPointerException: Cannot invoke "com.logviewpro.demo.model.UserProfile.getPreferences()" because "profile" is null
+	at com.logviewpro.demo.UserService.getUserPreferences(UserService.java:142)
+	at com.logviewpro.demo.UserService.loadUserProfile(UserService.java:88)
+	at com.logviewpro.demo.UserController.getUserProfile(UserController.java:54)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+2026-11-17 01:02:00.010 [batch-sync-cron] INFO com.logviewpro.demo.DataSyncTask - Running scheduled synchronization batch task
+2026-11-17 01:02:05.300 [batch-sync-cron] WARN com.logviewpro.demo.DataSyncTask - Remote replica response latency high: 4,120ms
+2026-11-17 01:02:15.540 [http-nio-8080-exec-4] ERROR com.logviewpro.demo.BillingService - Database transaction failed during invoice generation
+java.sql.SQLException: Connection leak detected. Connection pool exhausted after waiting 30000ms.
+	at com.logviewpro.demo.BillingService.createInvoice(BillingService.java:210)
+	at com.logviewpro.demo.BillingController.generateBill(BillingController.java:76)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+Caused by: org.postgresql.util.PSQLException: FATAL: sorry, too many clients already
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:525)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:146)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:197)
+	... 14 more
+2026-11-17 01:03:00.100 [http-nio-8080-exec-5] INFO com.logviewpro.demo.HealthCheck - Health probe status: 200 OK
+2026-11-17 01:03:22.450 [worker-thread-2] ERROR com.logviewpro.demo.FileStorageService - Failed to upload customer receipt file to object store
+java.io.IOException: Broken pipe - connection reset by remote host 10.0.4.15:9000
+	at com.logviewpro.demo.FileStorageService.uploadStream(FileStorageService.java:115)
+	at com.logviewpro.demo.FileStorageService.storeDocument(FileStorageService.java:62)
+	at com.logviewpro.demo.DocumentWorker.run(DocumentWorker.java:41)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-11-17 01:04:12.780 [http-nio-8080-exec-6] FATAL com.logviewpro.demo.ApplicationKernel - JVM Out Of Memory Error encountered in worker pool
+java.lang.OutOfMemoryError: Java heap space: requested 134217728 bytes for object allocation
+	at com.logviewpro.demo.ReportingService.aggregateHistoricalData(ReportingService.java:312)
+	at com.logviewpro.demo.ReportingController.downloadAnnualReport(ReportingController.java:95)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-11-17 01:04:15.900 [main] INFO com.logviewpro.demo.BootstrapApplication - Completed scheduled health metrics dump

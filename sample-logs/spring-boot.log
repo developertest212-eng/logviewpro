@@ -1,0 +1,20 @@
+2026-11-17T01:10:00.120+00:00  INFO 28412 --- [           main] c.l.demo.SpringBootDemoApplication       : Starting SpringBootDemoApplication using Java 17.0.10 with PID 28412
+2026-11-17T01:10:01.350+00:00  INFO 28412 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-11-17T01:10:02.100+00:00  INFO 28412 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-17T01:10:02.105+00:00  INFO 28412 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2026-11-17T01:10:03.450+00:00  INFO 28412 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-11-17T01:10:03.460+00:00  INFO 28412 --- [           main] c.l.demo.SpringBootDemoApplication       : Started SpringBootDemoApplication in 3.65 seconds (process running for 4.12)
+2026-11-17T01:11:15.890+00:00  WARN 28412 --- [nio-8080-exec-1] o.s.web.servlet.PageNotFound             : No mapping for GET /favicon.ico
+2026-11-17T01:12:00.220+00:00  INFO 28412 --- [nio-8080-exec-2] c.l.demo.controller.UserController      : Request: GET /api/v1/users?page=1
+2026-11-17T01:13:45.100+00:00 ERROR 28412 --- [nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'paymentGatewayService': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:515)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1419)
+	at com.logviewpro.demo.PaymentController.process(PaymentController.java:34)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'stripe.secret.key' in value "${stripe.secret.key}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.boot.context.properties.bind.Bindable.of(Bindable.java:94)
+	... 25 more
+2026-11-17T01:14:10.500+00:00  WARN 28412 --- [nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.logviewpro.demo.OrderResponse>]
+2026-11-17T01:15:00.000+00:00  INFO 28412 --- [   scheduling-1] c.l.demo.service.ScheduledHeartbeat      : Heartbeat check passed: DB=UP, REDIS=UP

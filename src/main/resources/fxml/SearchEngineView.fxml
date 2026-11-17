@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.SearchEngineController">
+    <!-- Search Query Builder Card -->
+    <VBox spacing="10.0" styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <TextField fx:id="txtSearchTerm" prefWidth="380.0" promptText="Enter search phrase, keyword, or regex..." />
+            <Button fx:id="btnSearch" onAction="#onExecuteSearch" styleClass="button-primary" text="🔍 Search" />
+            <Button fx:id="btnCancelSearch" disable="true" onAction="#onCancelSearch" styleClass="button-danger" text="✕ Cancel" />
+            <ProgressBar fx:id="progressSearch" prefWidth="140.0" visible="false" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblMatchStats" style="-fx-font-weight: bold; -fx-text-fill: #38BDF8;" text="Ready to search" />
+        </HBox>
+
+        <!-- Search Modifiers -->
+        <HBox alignment="CENTER_LEFT" spacing="16.0">
+            <CheckBox fx:id="chkCaseSensitive" text="Case Sensitive" />
+            <CheckBox fx:id="chkWholeWord" text="Whole Word" />
+            <CheckBox fx:id="chkRegex" text="Regular Expression" />
+            <CheckBox fx:id="chkSearchAllFiles" text="Search Across All Open Files" />
+            <Separator orientation="VERTICAL" />
+            <Label text="Level:" />
+            <ComboBox fx:id="comboLevelFilter" prefWidth="90.0" />
+            <Label text="Class:" />
+            <TextField fx:id="txtClassFilter" prefWidth="130.0" promptText="e.g. UserService" />
+            <Label text="Thread:" />
+            <TextField fx:id="txtThreadFilter" prefWidth="110.0" promptText="e.g. http-nio" />
+            <Label text="Lines:" />
+            <TextField fx:id="txtStartLine" prefWidth="60.0" promptText="Start" />
+            <Label text="to" />
+            <TextField fx:id="txtEndLine" prefWidth="60.0" promptText="End" />
+        </HBox>
+    </VBox>
+
+    <SplitPane dividerPositions="0.22" VBox.vgrow="ALWAYS">
+        <!-- Search History Sidebar -->
+        <VBox spacing="8.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="SEARCH HISTORY" />
+            <ListView fx:id="listSearchHistory" VBox.vgrow="ALWAYS" />
+        </VBox>
+
+        <!-- Search Results Table -->
+        <VBox spacing="8.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="MATCHING RESULTS (DOUBLE-CLICK TO JUMP)" />
+            <TableView fx:id="tableSearchResults" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colFile" prefWidth="200.0" text="File" />
+                    <TableColumn fx:id="colLine" prefWidth="75.0" text="Line #" />
+                    <TableColumn fx:id="colSnippet" prefWidth="750.0" text="Matching Snippet" />
+                </columns>
+            </TableView>
+        </VBox>
+    </SplitPane>
+</VBox>

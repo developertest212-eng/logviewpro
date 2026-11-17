@@ -1,0 +1,6 @@
+{"timestamp":"2026-11-17T01:20:00.100Z","level":"INFO","thread":"main","logger":"com.logviewpro.demo.AuthService","message":"Authentication service starting up"}
+{"timestamp":"2026-11-17T01:20:01.200Z","level":"DEBUG","thread":"main","logger":"com.logviewpro.demo.SecurityConfig","message":"Loaded JWT public verification keys"}
+{"timestamp":"2026-11-17T01:20:05.450Z","level":"INFO","thread":"http-worker-1","logger":"com.logviewpro.demo.TokenEndpoint","message":"Issued bearer token for subject: user_88192"}
+{"timestamp":"2026-11-17T01:20:12.780Z","level":"WARN","thread":"http-worker-2","logger":"com.logviewpro.demo.TokenEndpoint","message":"Invalid login credentials for subject: user_unknown"}
+{"timestamp":"2026-11-17T01:21:00.340Z","level":"ERROR","thread":"http-worker-3","logger":"com.logviewpro.demo.OidcClient","message":"Failed to communicate with identity provider","stack_trace":"java.net.ConnectException: Connection refused: no further information\n\tat java.base/sun.nio.ch.Net.pollConnect(Native Method)\n\tat com.logviewpro.demo.OidcClient.fetchJwks(OidcClient.java:82)"}
+{"timestamp":"2026-11-17T01:21:05.000Z","level":"INFO","thread":"http-worker-4","logger":"com.logviewpro.demo.AuthService","message":"Refreshed session tokens successfully"}

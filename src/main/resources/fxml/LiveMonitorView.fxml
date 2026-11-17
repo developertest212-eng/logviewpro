@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.LiveMonitorController">
+    <!-- Header / Control Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📡 Live Monitor" />
+        <Separator orientation="VERTICAL" />
+        <Label text="File to tail:" />
+        <ComboBox fx:id="comboMonitoredFiles" prefWidth="340.0" promptText="Select or open file..." />
+        <Button onAction="#onSelectFile" styleClass="button-secondary" text="Browse..." />
+        <Button fx:id="btnToggleMonitoring" onAction="#onToggleMonitoring" styleClass="button-primary" text="Start Monitoring" />
+        <Button fx:id="btnPauseResume" onAction="#onPauseResume" styleClass="button-secondary" text="Pause Tail" />
+        <Button onAction="#onClearBuffer" styleClass="button-secondary" text="Clear" />
+        <CheckBox fx:id="chkAutoScroll" selected="true" text="Auto-Scroll" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblBufferCount" style="-fx-text-fill: -color-text-muted;" text="Buffered: 0 lines" />
+        <Label fx:id="lblMonitorStatus" style="-fx-background-color: #1F2937; -fx-text-fill: #34D399; -fx-padding: 4 10; -fx-background-radius: 4; -fx-font-weight: bold;" text="Status: Idle" />
+    </HBox>
+
+    <!-- Table of Live Appended Logs -->
+    <TableView fx:id="tableLiveLogs" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colLine" prefWidth="65.0" text="Line #" />
+            <TableColumn fx:id="colTime" prefWidth="170.0" text="Timestamp" />
+            <TableColumn fx:id="colLevel" prefWidth="85.0" text="Level" />
+            <TableColumn fx:id="colThread" prefWidth="140.0" text="Thread" />
+            <TableColumn fx:id="colLogger" prefWidth="220.0" text="Logger / Class" />
+            <TableColumn fx:id="colMessage" prefWidth="550.0" text="Message" />
+        </columns>
+    </TableView>
+</VBox>

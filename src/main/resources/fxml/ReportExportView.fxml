@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.ReportExportController">
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📄 Professional Log Reporting &amp; Data Export" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblExportStatus" style="-fx-text-fill: #38BDF8; -fx-font-weight: bold;" text="Select export parameters below" />
+    </HBox>
+
+    <VBox maxWidth="700.0" spacing="16.0" styleClass="card">
+        <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #818CF8;" text="REPORT CONFIGURATION" />
+
+        <GridPane hgap="16.0" vgap="14.0">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="180.0" />
+                <ColumnConstraints prefWidth="380.0" />
+            </columnConstraints>
+
+            <!-- Report Type -->
+            <Label style="-fx-font-weight: bold;" text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="comboReportType" prefWidth="320.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- Export Format -->
+            <Label style="-fx-font-weight: bold;" text="Target Format:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboFormat" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Custom Title -->
+            <Label style="-fx-font-weight: bold;" text="Report Title / Header:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="txtCustomTitle" promptText="e.g. Production Crash Incident Report" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <!-- Metadata Checkbox -->
+            <Label style="-fx-font-weight: bold;" text="Include Metadata Header:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <CheckBox fx:id="chkIncludeMetadata" selected="true" text="Embed date range, source file path, and line counts" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </GridPane>
+
+        <Separator />
+
+        <HBox alignment="CENTER_LEFT" spacing="14.0">
+            <Button fx:id="btnGenerateReport" styleClass="button-primary" text="🚀 Generate &amp; Save Report..." />
+            <ProgressBar fx:id="progressExport" prefWidth="160.0" visible="false" />
+        </HBox>
+    </VBox>
+</VBox>

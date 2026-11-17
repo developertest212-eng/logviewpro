@@ -1,0 +1,12 @@
+2026-11-17 00:50:00.120 [db-health-check] INFO com.logviewpro.demo.DbMonitor - Primary database pool status: Active=4, Idle=16
+2026-11-17 00:51:22.450 [query-worker-1] WARN com.logviewpro.demo.DbMonitor - Slow query detected: SELECT * FROM audit_logs took 8,450ms
+2026-11-17 00:52:10.890 [query-worker-2] ERROR com.logviewpro.demo.DbMonitor - Deadlock detected on table inventory_locks
+java.sql.SQLException: Deadlock found when trying to get lock; try restarting transaction
+	at com.logviewpro.demo.InventoryDao.acquireLock(InventoryDao.java:88)
+	at com.logviewpro.demo.OrderProcessor.process(OrderProcessor.java:54)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2026-11-17 00:53:05.100 [query-worker-3] ERROR com.logviewpro.demo.DbMonitor - Connection timeout acquired from Hikari pool
+java.sql.SQLTimeoutException: Timeout after 30000ms waiting for connection.
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:217)
+	at com.logviewpro.demo.CustomerDao.findById(CustomerDao.java:42)
+	at java.base/java.lang.Thread.run(Thread.java:840)

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.SettingsController">
+    <VBox spacing="16.0">
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+            <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="⚙ Application Preferences &amp; Configuration" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblSettingsStatus" style="-fx-text-fill: #34D399; -fx-font-weight: bold;" text="" />
+            <Button fx:id="btnSaveSettings" styleClass="button-primary" text="💾 Save Preferences" />
+        </HBox>
+
+        <!-- Form Grid -->
+        <VBox maxWidth="750.0" spacing="14.0" styleClass="card">
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #818CF8;" text="APPEARANCE &amp; TYPOGRAPHY" />
+
+            <GridPane hgap="16.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="220.0" />
+                    <ColumnConstraints prefWidth="400.0" />
+                </columnConstraints>
+
+                <Label text="Color Theme:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="comboTheme" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Log Viewer Font Family:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="comboFontFamily" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Font Size (px):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Spinner fx:id="spinFontSize" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            </GridPane>
+
+            <Separator />
+
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #818CF8;" text="PERFORMANCE &amp; PAGING" />
+
+            <GridPane hgap="16.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="220.0" />
+                    <ColumnConstraints prefWidth="400.0" />
+                </columnConstraints>
+
+                <Label text="Max Visible Entries / Page:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Spinner fx:id="spinMaxVisibleLines" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Auto-Scroll on Live Tail:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <CheckBox fx:id="chkAutoScroll" selected="true" text="Follow latest entry automatically" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Recent Files History Limit:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Spinner fx:id="spinRecentFilesLimit" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            </GridPane>
+
+            <Separator />
+
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #818CF8;" text="ENCODING &amp; PATHS" />
+
+            <GridPane hgap="16.0" vgap="12.0">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="220.0" />
+                    <ColumnConstraints prefWidth="400.0" />
+                </columnConstraints>
+
+                <Label text="Default File Search Directory:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <TextField fx:id="txtDefaultFolder" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btnBrowseFolder" styleClass="button-secondary" text="Browse..." />
+                </HBox>
+
+                <Label text="Default Fallback Encoding:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="comboDefaultEncoding" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Timestamp Parse Pattern:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="txtDateFormatPattern" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            </GridPane>
+
+            <Separator />
+
+            <Label style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #818CF8;" text="NOTIFICATIONS &amp; SOUNDS" />
+
+            <HBox spacing="24.0">
+                <CheckBox fx:id="chkSoundAlerts" text="Enable System Beep / Sound Alerts" />
+                <CheckBox fx:id="chkDesktopAlerts" text="Enable Windows Desktop Notifications" />
+            </HBox>
+        </VBox>
+    </VBox>
+</ScrollPane>

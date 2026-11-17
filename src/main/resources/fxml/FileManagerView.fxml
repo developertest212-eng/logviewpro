@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.FileManagerController">
+    <!-- Action Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📂 Log File Management" />
+        <Separator orientation="VERTICAL" />
+        <Button onAction="#onOpenFile" styleClass="button-primary" text="📄 Open File..." />
+        <Button onAction="#onOpenMultipleFiles" styleClass="button-secondary" text="📑 Open Multiple..." />
+        <Button onAction="#onOpenFolder" styleClass="button-secondary" text="📁 Open Entire Folder..." />
+        <Button onAction="#onReloadFile" styleClass="button-secondary" text="🔄 Reload File" />
+        <Button onAction="#onCopyFilePath" styleClass="button-secondary" text="📋 Copy Path" />
+        <Button onAction="#onCloseSelectedFile" styleClass="button-danger" text="✕ Close File" />
+        <Region HBox.hgrow="ALWAYS" />
+        <ProgressBar fx:id="progressLoad" prefWidth="120.0" visible="false" />
+    </HBox>
+
+    <!-- Drag & Drop Card -->
+    <VBox fx:id="dropZone" alignment="CENTER" minHeight="90.0" spacing="6.0" style="-fx-border-style: dashed; -fx-border-color: #4F46E5; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-color: #1E1B4B; -fx-background-radius: 8;">
+        <padding>
+            <Insets bottom="14.0" top="14.0" />
+        </padding>
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: #C7D2FE;" text="📥 Drag and Drop Log Files Here" />
+        <Label style="-fx-font-size: 12px; -fx-text-fill: #818CF8;" text="Supports .log, .txt, .json, .jsonl, .out, .trace &amp; rotated log files" />
+    </VBox>
+
+    <!-- Active File Summary -->
+    <HBox alignment="CENTER_LEFT" styleClass="card">
+        <Label fx:id="lblActiveFileMeta" style="-fx-font-weight: 600; -fx-text-fill: #38BDF8;" text="Active File: None selected" />
+    </HBox>
+
+    <!-- Table of Files -->
+    <TableView fx:id="tableFiles" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colPinned" prefWidth="75.0" text="Favorite" />
+            <TableColumn fx:id="colFileName" prefWidth="200.0" text="File Name" />
+            <TableColumn fx:id="colSize" prefWidth="90.0" text="Size" />
+            <TableColumn fx:id="colLines" prefWidth="100.0" text="Lines" />
+            <TableColumn fx:id="colEncoding" prefWidth="90.0" text="Encoding" />
+            <TableColumn fx:id="colErrors" prefWidth="80.0" text="Errors" />
+            <TableColumn fx:id="colPath" prefWidth="550.0" text="Full File Path" />
+        </columns>
+    </TableView>
+</VBox>

@@ -1,0 +1,9 @@
+2026-11-16 23:55:00.010 [main] INFO com.logviewpro.demo.BootstrapApplication - Initializing LogView Pro Core Service Engine
+2026-11-16 23:55:01.345 [main] INFO com.logviewpro.demo.ConfigLoader - Loaded configuration profile: STAGING
+2026-11-16 23:56:02.100 [main] INFO com.logviewpro.demo.DatabasePool - Database pool initialized
+2026-11-16 23:57:15.890 [http-nio-8080-exec-1] WARN com.logviewpro.demo.RateLimiter - Client 192.168.1.50 near rate limit
+2026-11-16 23:58:16.020 [http-nio-8080-exec-2] ERROR com.logviewpro.demo.UserService - Failed to process user profile due to unexpected null reference
+java.lang.NullPointerException: Cannot invoke "com.logviewpro.demo.model.UserProfile.getPreferences()" because "profile" is null
+	at com.logviewpro.demo.UserService.getUserPreferences(UserService.java:142)
+	at com.logviewpro.demo.UserService.loadUserProfile(UserService.java:88)
+2026-11-16 23:59:59.990 [main] INFO com.logviewpro.demo.BootstrapApplication - Log rotation trigger: rotating to app-production.log

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.LogViewerController">
+    <!-- Filter Bar & Navigation Controls -->
+    <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card">
+        <!-- Level Toggle Buttons -->
+        <HBox alignment="CENTER_LEFT" spacing="6.0">
+            <ToggleButton fx:id="btnToggleError" onAction="#onToggleLevel" selected="true" style="-fx-text-fill: #EF4444; -fx-font-weight: bold;" text="ERROR" />
+            <ToggleButton fx:id="btnToggleWarn" onAction="#onToggleLevel" selected="true" style="-fx-text-fill: #F59E0B; -fx-font-weight: bold;" text="WARN" />
+            <ToggleButton fx:id="btnToggleInfo" onAction="#onToggleLevel" selected="true" style="-fx-text-fill: #3B82F6; -fx-font-weight: bold;" text="INFO" />
+            <ToggleButton fx:id="btnToggleDebug" onAction="#onToggleLevel" selected="true" style="-fx-text-fill: #10B981; -fx-font-weight: bold;" text="DEBUG" />
+            <ToggleButton fx:id="btnToggleTrace" onAction="#onToggleLevel" selected="true" style="-fx-text-fill: #9CA3AF;" text="TRACE" />
+        </HBox>
+
+        <Separator orientation="VERTICAL" />
+
+        <!-- Quick filter in current view -->
+        <TextField fx:id="txtQuickFilter" prefWidth="220.0" promptText="Filter current entries..." />
+
+        <!-- Jump to line -->
+        <HBox alignment="CENTER_LEFT" spacing="4.0">
+            <TextField fx:id="txtJumpLine" prefWidth="90.0" promptText="Line #" />
+            <Button onAction="#onJumpToLine" styleClass="button-secondary" text="Go" />
+        </HBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <!-- Paging controls -->
+        <Button onAction="#onJumpToFirst" styleClass="button-secondary" text="⏮ First" />
+        <Button fx:id="btnPrevPage" onAction="#onPrevPage" styleClass="button-secondary" text="◀ Prev" />
+        <Label fx:id="lblPageInfo" style="-fx-text-fill: -color-text-main; -fx-font-weight: 600;" text="Page 1 of 1" />
+        <Button fx:id="btnNextPage" onAction="#onNextPage" styleClass="button-secondary" text="Next ▶" />
+        <Button onAction="#onJumpToLast" styleClass="button-secondary" text="Last ⏭" />
+
+        <ComboBox fx:id="comboPageSize" prefWidth="95.0" />
+    </HBox>
+
+    <!-- Main Table View -->
+    <TableView fx:id="tableLogs" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colBookmark" prefWidth="35.0" text="★" />
+            <TableColumn fx:id="colLine" prefWidth="70.0" text="Line #" />
+            <TableColumn fx:id="colTimestamp" prefWidth="175.0" text="Timestamp" />
+            <TableColumn fx:id="colLevel" prefWidth="85.0" text="Level" />
+            <TableColumn fx:id="colThread" prefWidth="140.0" text="Thread" />
+            <TableColumn fx:id="colLogger" prefWidth="220.0" text="Logger / Class" />
+            <TableColumn fx:id="colMessage" prefWidth="550.0" text="Message" />
+        </columns>
+    </TableView>
+
+    <!-- Detail & Stack Trace Area (Split Pane or Expandable VBox) -->
+    <VBox fx:id="detailBox" maxHeight="220.0" minHeight="140.0" spacing="6.0" styleClass="card">
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label fx:id="lblDetailHeader" style="-fx-font-weight: bold; -fx-text-fill: #818CF8;" text="Log Entry Details" />
+            <Region HBox.hgrow="ALWAYS" />
+            <CheckBox fx:id="chkWrapLines" text="Wrap Lines" />
+            <Button fx:id="btnCopyEntry" styleClass="button-secondary" text="📋 Copy Entry" />
+            <Button fx:id="btnCopyStackTrace" disable="true" styleClass="button-secondary" text="📋 Copy Stack Trace" />
+        </HBox>
+        <SplitPane dividerPositions="0.45" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="txtDetailMessage" editable="false" promptText="Log message..." styleClass="detail-area" />
+            <TextArea fx:id="txtDetailStackTrace" editable="false" promptText="Stack trace (if any)..." styleClass="detail-area" />
+        </SplitPane>
+    </VBox>
+</VBox>

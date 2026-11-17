@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.ExceptionAnalyzerController">
+    <!-- Top Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🐞 Automated Exception &amp; Stack Trace Analyzer" />
+        <Separator orientation="VERTICAL" />
+        <Button onAction="#runAnalysis" styleClass="button-primary" text="🔄 Re-Analyze" />
+        <Button fx:id="btnCompareTraces" styleClass="button-secondary" text="⚖ Compare Diverging Traces" />
+        <Button fx:id="btnCopyStackTrace" styleClass="button-secondary" text="📋 Copy Stack Trace" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblAnalysisTitle" style="-fx-font-weight: bold; -fx-text-fill: #F87171;" text="Select an exception group" />
+    </HBox>
+
+    <SplitPane dividerPositions="0.45" VBox.vgrow="ALWAYS">
+        <!-- Left: Table of Grouped Exceptions -->
+        <VBox spacing="8.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="DETECTED EXCEPTION GROUPS" />
+            <TableView fx:id="tableExceptions" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colExName" prefWidth="180.0" text="Exception Class" />
+                    <TableColumn fx:id="colExCount" prefWidth="65.0" text="Count" />
+                    <TableColumn fx:id="colExAppFrame" prefWidth="250.0" text="First Application Frame" />
+                    <TableColumn fx:id="colExFirstSeen" prefWidth="130.0" text="First Seen" />
+                    <TableColumn fx:id="colExLastSeen" prefWidth="130.0" text="Last Seen" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Right: Detail Explanation & Stack Sample & Occurrences -->
+        <VBox spacing="10.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #818CF8;" text="TECHNICAL EXPLANATION &amp; ASSESSMENT" />
+            <TextArea fx:id="txtExplanation" editable="false" prefHeight="150.0" styleClass="detail-area" wrapText="true" />
+
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="REPRESENTATIVE STACK TRACE" />
+            <TextArea fx:id="txtStackSample" editable="false" styleClass="detail-area" VBox.vgrow="ALWAYS" />
+
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="OCCURRENCE INSTANCES" />
+            <ListView fx:id="listOccurrences" prefHeight="100.0" />
+        </VBox>
+    </SplitPane>
+</VBox>

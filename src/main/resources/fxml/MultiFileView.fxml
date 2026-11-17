@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.MultiFileController">
+    <!-- Top Action Bar -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="📑 Multi-File Tabs &amp; Timestamp Merging" />
+        <Separator orientation="VERTICAL" />
+        <Button fx:id="btnOpenNewTab" onAction="#onOpenNewTab" styleClass="button-primary" text="➕ Open New File Tab" />
+        <Button fx:id="btnMergeAllByTimestamp" onAction="#onMergeAllByTimestamp" styleClass="button-secondary" text="🔄 Merge All Files Chronologically" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblMergeStatus" style="-fx-text-fill: -color-text-muted;" text="Open tabs to inspect side-by-side or merge" />
+    </HBox>
+
+    <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">
+        <!-- Top: Tabbed Individual File Viewers -->
+        <VBox spacing="6.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="INDIVIDUAL FILE TABS" />
+            <TabPane fx:id="tabPaneFiles" tabClosingPolicy="ALL_TABS" VBox.vgrow="ALWAYS" />
+        </VBox>
+
+        <!-- Bottom: Merged Chronological Stream -->
+        <VBox spacing="6.0">
+            <Label style="-fx-font-weight: bold; -fx-text-fill: #38BDF8;" text="UNIFIED MERGED STREAM (SORTED BY TIMESTAMP)" />
+            <TableView fx:id="tableMergedView" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colMergedFile" prefWidth="180.0" text="Source File" />
+                    <TableColumn fx:id="colMergedLine" prefWidth="70.0" text="Line #" />
+                    <TableColumn fx:id="colMergedTime" prefWidth="180.0" text="Timestamp" />
+                    <TableColumn fx:id="colMergedLevel" prefWidth="85.0" text="Level" />
+                    <TableColumn fx:id="colMergedMessage" prefWidth="600.0" text="Message" />
+                </columns>
+            </TableView>
+        </VBox>
+    </SplitPane>
+</VBox>

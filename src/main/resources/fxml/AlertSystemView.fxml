@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.AlertSystemController">
+    <!-- Rule Creator Card -->
+    <VBox spacing="10.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🚨 Configure Smart Monitoring Alerts" />
+        <HBox alignment="CENTER_LEFT" spacing="12.0">
+            <Label text="Rule Name:" />
+            <TextField fx:id="txtRuleName" prefWidth="180.0" promptText="e.g. OOM Detection" />
+            <Label text="Type:" />
+            <ComboBox fx:id="comboAlertType" prefWidth="170.0" />
+            <Label text="Target / Parameter:" />
+            <TextField fx:id="txtParameter" prefWidth="200.0" promptText="Keyword, exception or text..." />
+            <Label text="Threshold:" />
+            <TextField fx:id="txtThreshold" prefWidth="50.0" promptText="5" />
+            <Label text="Window (s):" />
+            <TextField fx:id="txtWindowSec" prefWidth="50.0" promptText="60" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="16.0">
+            <Label style="-fx-font-weight: bold;" text="Actions:" />
+            <CheckBox fx:id="chkNotifyDesktop" selected="true" text="Desktop Notification" />
+            <CheckBox fx:id="chkPlaySound" selected="true" text="Sound Alert" />
+            <CheckBox fx:id="chkHighlightEntry" selected="true" text="Highlight Entry" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnCreateRule" styleClass="button-primary" text="➕ Create Alert Rule" />
+        </HBox>
+    </VBox>
+
+    <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
+        <!-- Left: Configured Alert Rules Table -->
+        <VBox spacing="8.0">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="ALERT RULES (TOGGLE TO ENABLE/DISABLE)" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnDeleteRule" styleClass="button-danger" text="🗑 Delete Selected" />
+            </HBox>
+            <TableView fx:id="tableRules" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colRuleEnabled" prefWidth="65.0" text="Active" />
+                    <TableColumn fx:id="colRuleName" prefWidth="180.0" text="Rule Name" />
+                    <TableColumn fx:id="colRuleType" prefWidth="140.0" text="Type" />
+                    <TableColumn fx:id="colRuleParam" prefWidth="180.0" text="Parameter" />
+                    <TableColumn fx:id="colRuleActions" prefWidth="200.0" text="Configured Actions" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Right: Notification History Feed -->
+        <VBox spacing="8.0">
+            <HBox alignment="CENTER_LEFT">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="ALERT NOTIFICATION LOG (SQLITE)" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnClearHistory" styleClass="button-secondary" text="Clear Log" />
+            </HBox>
+            <ListView fx:id="listNotifications" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </SplitPane>
+</VBox>

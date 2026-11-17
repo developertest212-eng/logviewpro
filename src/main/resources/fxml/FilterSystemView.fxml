@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.logviewpro.controller.FilterSystemController">
+    <!-- Top Info -->
+    <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="card">
+        <Label style="-fx-font-size: 15px; -fx-font-weight: bold; -fx-text-fill: -color-text-main;" text="🎛 Advanced Filter Builder" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblFilterStatus" style="-fx-text-fill: #38BDF8; -fx-font-weight: bold;" text="Create and save multi-rule log filters" />
+    </HBox>
+
+    <SplitPane dividerPositions="0.6" VBox.vgrow="ALWAYS">
+        <!-- Left: Rule Builder -->
+        <VBox spacing="12.0">
+            <padding>
+                <Insets right="8.0" />
+            </padding>
+            <VBox spacing="10.0" styleClass="card">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #818CF8;" text="FILTER CONFIGURATION" />
+                <HBox alignment="CENTER_LEFT" spacing="12.0">
+                    <Label text="Filter Name:" />
+                    <TextField fx:id="txtFilterName" prefWidth="240.0" promptText="e.g. Critical User Service Errors" />
+                    <Label text="Group Logic:" />
+                    <ComboBox fx:id="comboLogic" prefWidth="90.0" />
+                    <CheckBox fx:id="chkExclude" text="Exclude Mode (Invert)" />
+                </HBox>
+            </VBox>
+
+            <!-- Condition Rows Container -->
+            <VBox spacing="8.0" styleClass="card" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="RULES / CONDITIONS" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="btnAddCondition" styleClass="button-secondary" text="➕ Add Condition" />
+                </HBox>
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="boxConditionsList" spacing="8.0" />
+                </ScrollPane>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <Button fx:id="btnResetFilter" styleClass="button-secondary" text="Reset" />
+                    <Button fx:id="btnSaveFilter" styleClass="button-primary" text="💾 Save Filter to SQLite" />
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- Right: Saved Filters List -->
+        <VBox spacing="10.0">
+            <padding>
+                <Insets left="8.0" />
+            </padding>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: -color-text-muted;" text="SAVED FILTERS (PERSISTED IN SQLITE)" />
+            <ListView fx:id="listSavedFilters" VBox.vgrow="ALWAYS" />
+            <HBox spacing="10.0">
+                <Button fx:id="btnApplyFilter" styleClass="button-primary" text="⚡ Apply Filter" />
+                <Button fx:id="btnDeleteFilter" styleClass="button-danger" text="🗑 Delete" />
+            </HBox>
+        </VBox>
+    </SplitPane>
+</VBox>
